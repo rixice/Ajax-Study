@@ -32,9 +32,11 @@
                 if(xhr.readyState === 4){
                     if(xhr.status >= 200 && xhr.status < 300){
                         // result.innerHTML = xhr.response
+
                         // 手动对数据进行转换
                         // let data = JSON.parse(xhr.response)
                         // result.innerHTML = 'msg: '+data.msg
+                        
                         // 自动转换
                         result.innerHTML = 'msg: ' + xhr.response.msg
                     }

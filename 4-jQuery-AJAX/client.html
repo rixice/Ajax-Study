@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./jQuery.js"></script>
+    <title>jQuery 发送 AJAX 请求</title>
+</head>
+<body>
+    <div class="container">
+        <h2>jQuery 发送 AJAX 请求</h2>
+        <hr>
+        <button>GET</button>
+        <button>POST</button>
+        <button>通用型方法ajax</button>
+    </div>
+    <script>
+        $('button').eq(0).click(() => {
+            $.get('http://127.0.0.1:8000/jq',
+            {a:100, b:200}, 
+            (data) => {
+                console.log(data)
+                console.log(data.name)
+            },'json')
+        })
+
+        $('button').eq(1).click(() => {
+            $.post('http://127.0.0.1:8000/jq',
+            {a:100, b:200}, 
+            (data) => {
+                console.log(data)
+            })
+        })
+
+        $('button').eq(2).click(() => {
+            $.ajax({
+                // URL
+                url: 'http://127.0.0.1:8000/jq',
+                // 参数
+                data: {a: 100, b: '张三'},
+                // 请求类型
+                type: 'GET',
+                // 响应体结果
+                dataType: 'json',
+                // 成功的回调
+                success: (data) => {
+                    console.log(data)
+                },
+                // 超时时间
+                timeout: 2000,
+                // 失败的回调
+                error: () => {
+                    console.log('超时了！')
+                },
+                // 头信息
+                headers: {
+                    c: 300,
+                    d: 400
+                }
+            })
+        })
+    </script>
+</body>
+</html>
